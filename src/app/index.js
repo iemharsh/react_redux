@@ -1,20 +1,22 @@
+import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
+import { Router, browserHistory} from 'react-router';
+import routes from './routes';
 
-import { Header } from './components/Header';
-import { Home } from  './components/Home';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
+
+import { loadCourses } from './actions/coursesAction';
 
 
-class App extends  React.Component {
-    render() {
-        return (
-          <div className="container">
-              <h1>Main Component</h1>
 
-          </div>
-        );
-    }
+const store = configureStore();
+store.dispatch(loadCourses());
 
-}
-
-render(<App />, window.document.getElementById('root'));
+render(
+    <Provider store={store}>
+        <Router history={browserHistory} routes={routes}/>
+    </Provider>,
+    document.getElementById('app')
+)
