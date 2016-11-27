@@ -10,8 +10,6 @@ import configureStore from './store/configureStore';
 import { loadCourses } from './actions/coursesAction';
 import { loadAuthors } from './actions/auhtorsAction';
 
-
-
 const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
